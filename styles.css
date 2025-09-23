@@ -59,8 +59,10 @@ body {
   height: 0;
   width: 0;
   overflow: hidden;
-  transition: height 0.2s width 0.2s;
-  margin-left: 2rem;
+  transition: height 0.2s;
+  position: relative;
+  z-index: 10;
+  visibility: hidden;
 }
 .header__logo {
   height: 3rem;
@@ -224,8 +226,7 @@ body {
     height: 2.4rem;
     width: 2.4rem;
     overflow: auto;
-    position: relative;
-    z-index: 10;
+    visibility: visible;
   }
   .header__nav {
     position: absolute;
@@ -273,7 +274,10 @@ body {
   .container {
     width: 100%;
   }
-
+  .header {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+  }
   .main-img-container {
     border-radius: 0;
   }
