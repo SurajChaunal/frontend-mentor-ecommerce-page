@@ -50,9 +50,16 @@ body {
   border-bottom: 1px solid var(--color-Grayish-blue);
   padding-bottom: 2rem;
 }
-.menu-icon {
-  height: 2.4rem;
+.menu--container {
   display: none;
+}
+.menu-icon {
+  /* height: 2.4rem;
+  display: none; */
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  transition: height 0.2s width 0.2s;
   margin-left: 2rem;
 }
 .header__logo {
@@ -210,8 +217,13 @@ body {
     gap: 2rem;
     margin-bottom: 0;
   }
-  .menu-icon.header__nav.active {
+  .menu--container {
     display: block;
+  }
+  .menu-icon.active {
+    height: 2.4rem;
+    width: 2.4rem;
+    overflow: auto;
     position: relative;
     z-index: 10;
   }

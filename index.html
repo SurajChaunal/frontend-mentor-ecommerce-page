@@ -24,18 +24,24 @@
   <body>
     <div class="container">
       <header class="header">
-        <img
-          class="menu-icon"
-          alt="hamburger icon"
-          src="./images/icon-menu.svg"
-        />
-        <img class="menu-icon" alt="cross icon" src="./images/icon-close.svg" />
+        <div class="menu--container">
+          <img
+            class="menu-icon menu-icon--open active"
+            alt="hamburger icon"
+            src="./images/icon-menu.svg"
+          />
+          <img
+            class="menu-icon menu-icon--close"
+            alt="cross icon"
+            src="./images/icon-close.svg"
+          />
+        </div>
         <img
           class="header__logo"
           alt="snearkers company logo "
           src="./images/logo.svg"
         />
-        <nav class="header__nav active">
+        <nav class="header__nav">
           <ul class="nav__list">
             <li><a class="main__nav-link" href="#">Collections</a></li>
             <li><a class="main__nav-link" href="#">Men</a></li>
