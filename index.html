@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
+    <title>Frontend Mentor | E-commerce product page</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img
+          class="menu-icon"
+          alt="hamburger icon"
+          src="./images/icon-menu.svg"
+        />
+        <img class="menu-icon" alt="cross icon" src="./images/icon-close.svg" />
+        <img
+          class="header__logo"
+          alt="snearkers company logo "
+          src="./images/logo.svg"
+        />
+        <nav class="header__nav active">
+          <ul class="nav__list">
+            <li><a class="main__nav-link" href="#">Collections</a></li>
+            <li><a class="main__nav-link" href="#">Men</a></li>
+            <li><a class="main__nav-link" href="#">Women</a></li>
+            <li><a class="main__nav-link" href="#">About</a></li>
+            <li><a class="main__nav-link" href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header__container-user">
+          <img
+            class="cart-logo"
+            alt="cart logo with cart image "
+            src="./images/icon-cart.svg"
+          />
+          <img
+            class="avatar-img"
+            alt="snearkers company logo "
+            src="./images/image-avatar.png"
+          />
+        </div>
+      </header>
+      <main class="main-section">
+        <div class="main__container-imgs">
+          <div class="main-img-container"></div>
+          <div class="thumbnail-container">
+            <img
+              class="thumbnail-img"
+              alt="sneaker thumbnail-1"
+              src="./images/image-product-1-thumbnail.jpg"
+            />
+            <img
+              class="thumbnail-img active"
+              alt="sneaker thumbnail-2"
+              src="./images/image-product-2-thumbnail.jpg"
+            />
+            <img
+              class="thumbnail-img"
+              alt="sneaker thumbnail-3"
+              src="./images/image-product-3-thumbnail.jpg"
+            />
+            <img
+              class="thumbnail-img"
+              alt="sneaker thumbnail-4"
+              src="./images/image-product-4-thumbnail.jpg"
+            />
+          </div>
+        </div>
+        <div class="main__container-desc">
+          <h2 class="secondary-heading">Sneaker Company</h2>
+          <h1 class="primary-heading">Fall Limited Edition Sneakers</h1>
+          <p class="product-desc">
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they’ll withstand everything
+            the weather can offer
+          </p>
+          <div class="prices-info">
+            <p>
+              <span class="price">$125.00</span>
+              <span class="discount">50%</span>
+            </p>
+            <p class="old-price">$250.00</p>
+          </div>
+          <div class="container--btns">
+            <div class="quantity-btns">
+              <img
+                src="./images/icon-minus.svg"
+                class="quantity-icon"
+                alt="minus sign logo"
+              />
+              <span class="quantity">4</span>
+              <img
+                src="./images/icon-plus.svg"
+                class="quantity-icon"
+                alt="minus sign logo"
+              />
+            </div>
+            <button class="btn-add-cart">
+              <img
+                class="btn-logo"
+                alt="cart logo"
+                src="./images/icon-cart.svg"
+              />
+              <span>Add to cart</span>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
