@@ -36,6 +36,7 @@ body {
 .container {
   width: min(90%, 120rem);
   margin-top: 2rem;
+  /* overflow-x: hidden; */
 }
 
 /********* Header Section ********/
@@ -85,10 +86,47 @@ body {
   border-bottom: 2px solid var(--color-Orange);
 }
 .header__container-user {
+  position: relative;
   margin-left: auto;
   display: flex;
   align-items: center;
   gap: 4rem;
+}
+.cart-container {
+  padding: 1rem;
+  min-height: 20rem;
+  width: 35rem;
+  background-color: var(--color-White);
+  box-shadow: 0 0 8px 2px hsla(217, 9%, 45%, 0.209);
+  border-radius: 1rem;
+  overflow: hidden;
+  visibility: hidden;
+  position: absolute;
+  top: 120%;
+  right: 0%;
+  transition: transform 0.3s ease-in;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.cart-container.active {
+  transform: scaleY(1);
+  visibility: visible;
+  overflow: auto;
+}
+.cart-heading {
+  border-bottom: 1px solid var(--color-Grayish-blue);
+  padding-bottom: 1rem;
+  color: var(--color-Very-dark-blue);
+}
+.cart-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.btn {
+  border: none;
+  background: none;
 }
 .avatar-img {
   height: 5rem;
