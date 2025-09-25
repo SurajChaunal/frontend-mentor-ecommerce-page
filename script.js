@@ -11,6 +11,7 @@ const quantityBtnContainer = document.querySelector(".quantity-btns");
 const quantity = document.querySelector(".quantity");
 const mainImgContainer = document.querySelector(".main-img-container");
 const thumbnailContainer = document.querySelector(".thumbnail-container");
+const cartQuantity = document.querySelector(".cart-quantity");
 const thumbnailBtns = document.querySelectorAll(
   ".thumbnail-container > .thumbnail-btn"
 );
@@ -89,6 +90,13 @@ function renderRow(product) {
 function renderCheckoutButton() {
   return `<button class="btn-primary btn-checkout">Checkout</button>`;
 }
+function updateCartQuantity(quantity) {
+  cartQuantity.classList.remove("active");
+  if (quantity === 0) return;
+  cartQuantity.classList.add("active");
+  cartQuantity.textContent = quantity;
+}
+
 function updateCart(id) {
   const productInfo = state.cart.find((prod) => prod.id === id);
   // const markupRow = renderRow(productInfo);
@@ -100,8 +108,9 @@ function updateCart(id) {
     state.cart.length !== 0
       ? `${rowMarkup} ${markupBtn}`
       : `Your cart is empty`;
-  cartDescContainer.innerHTML = ``;
 
+  updateCartQuantity(productInfo?.quantity ?? 0);
+  cartDescContainer.innerHTML = ``;
   cartDescContainer.insertAdjacentHTML("beforeend", finalMarkup);
 }
 function handleAddToCart() {
@@ -160,7 +169,7 @@ function updatePhoto() {
     mainImgContainer.classList.remove("fading");
     resetThumbnailBtns();
     thumbnailBtns[state.currentImg].classList.add("active");
-  }, 500);
+  }, 100);
 }
 
 function handleMainImageClick(e) {
@@ -179,7 +188,7 @@ function handleMainImageClick(e) {
 function handleThumbnailClick(e) {
   const btn = e.target.closest(".thumbnail-btn");
   if (!btn) return;
-  const imgPosition = btn.dataset.pos;
+  const imgPosition = +btn.dataset.pos;
   state.currentImg = imgPosition;
   updatePhoto();
 }
