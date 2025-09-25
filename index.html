@@ -53,7 +53,7 @@
         <div class="header__container-user">
           <div class="cart-container active">
             <h3 class="cart-heading">Cart</h3>
-            <div class="cart-desc">your cart is empty</div>
+            <div class="cart-desc">Your cart is empty</div>
           </div>
           <button class="btn btn-cart">
             <img
@@ -112,19 +112,23 @@
           </div>
           <div class="container--btns">
             <div class="quantity-btns">
-              <img
-                src="./images/icon-minus.svg"
-                class="quantity-icon"
-                alt="minus sign logo"
-              />
+              <button class="btn btn-quantity" data-type="dec">
+                <img
+                  src="./images/icon-minus.svg"
+                  class="quantity-icon"
+                  alt="minus sign logo"
+                />
+              </button>
               <span class="quantity">4</span>
-              <img
-                src="./images/icon-plus.svg"
-                class="quantity-icon"
-                alt="minus sign logo"
-              />
+              <button class="btn btn-quantity" data-type="inc">
+                <img
+                  src="./images/icon-plus.svg"
+                  class="quantity-icon"
+                  alt="minus sign logo"
+                />
+              </button>
             </div>
-            <button class="btn-add-cart">
+            <button class="btn-primary btn-add-cart">
               <img
                 class="btn-logo"
                 alt="cart logo"
