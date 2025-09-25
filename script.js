@@ -10,6 +10,11 @@ const productQuantity = document.querySelector(".quantity");
 const quantityBtnContainer = document.querySelector(".quantity-btns");
 const quantity = document.querySelector(".quantity");
 const mainImgContainer = document.querySelector(".main-img-container");
+const thumbnailContainer = document.querySelector(".thumbnail-container");
+const thumbnailBtns = document.querySelectorAll(
+  ".thumbnail-container > .thumbnail-btn"
+);
+
 // state and data variables
 const product = {
   id: 1,
@@ -141,23 +146,43 @@ function handleQuantity(e) {
     ? updateQuantiy(currQuantity + 1)
     : currQuantity > 0 && updateQuantiy(currQuantity - 1);
 }
-function updatePhoto() {
-  const currImge = state.imgArray[state.currentImg];
-  mainImgContainer.style.backgroundImage = `url(${currImge})`;
+function resetThumbnailBtns() {
+  thumbnailBtns.forEach((btn) => btn.classList.remove("active"));
 }
 
-function handleImageChange(e) {
+function updatePhoto() {
+  const currImg = state.imgArray[state.currentImg];
+  mainImgContainer.classList.add("fading");
+
+  // wait for fade-out to finish, then swap bg and fade-in
+  setTimeout(() => {
+    mainImgContainer.style.backgroundImage = `url(${currImg})`;
+    mainImgContainer.classList.remove("fading");
+    resetThumbnailBtns();
+    thumbnailBtns[state.currentImg].classList.add("active");
+  }, 500);
+}
+
+function handleMainImageClick(e) {
   const btn = e.target.closest(".main-img-btn");
   if (!btn) return;
   //below code for circular implementation
+  const len = state.imgArray.length;
   if (btn.dataset.type === "next") {
-    state.currentImg = (state.currentImg + 1) % 4;
+    state.currentImg = (state.currentImg + 1) % len;
   } else {
-    state.currentImg = state.currentImg - 1 === 0 ? 3 : state.currentImg - 1;
+    state.currentImg = (state.currentImg - 1 + len) % len;
   }
   updatePhoto();
 }
 
+function handleThumbnailClick(e) {
+  const btn = e.target.closest(".thumbnail-btn");
+  if (!btn) return;
+  const imgPosition = btn.dataset.pos;
+  state.currentImg = imgPosition;
+  updatePhoto();
+}
 //event listeners
 cartDescContainer.addEventListener("click", handleDelete);
 menuContainer.addEventListener("click", handleMenuclick);
@@ -165,4 +190,5 @@ cartBtn.addEventListener("click", handleCart);
 window.addEventListener("keydown", handleEscape);
 addToCartBtn.addEventListener("click", handleAddToCart);
 quantityBtnContainer.addEventListener("click", handleQuantity);
-mainImgContainer.addEventListener("click", handleImageChange);
+mainImgContainer.addEventListener("click", handleMainImageClick);
+thumbnailContainer.addEventListener("click", handleThumbnailClick);
