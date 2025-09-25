@@ -9,7 +9,7 @@ const cartDescContainer = document.querySelector(".cart-desc");
 const productQuantity = document.querySelector(".quantity");
 const quantityBtnContainer = document.querySelector(".quantity-btns");
 const quantity = document.querySelector(".quantity");
-
+const mainImgContainer = document.querySelector(".main-img-container");
 // state and data variables
 const product = {
   id: 1,
@@ -18,9 +18,18 @@ const product = {
   price: 125,
   quantity: 0,
 };
+const imgArray = [
+  "./images/image-product-1.jpg",
+  "./images/image-product-2.jpg",
+  "./images/image-product-3.jpg",
+  "./images/image-product-4.jpg",
+];
 const state = {
   cart: [],
+  imgArray,
+  currentImg: 1,
 };
+
 // helper function
 function updateQuantiy(val) {
   quantity.textContent = +val;
@@ -132,6 +141,22 @@ function handleQuantity(e) {
     ? updateQuantiy(currQuantity + 1)
     : currQuantity > 0 && updateQuantiy(currQuantity - 1);
 }
+function updatePhoto() {
+  const currImge = state.imgArray[state.currentImg];
+  mainImgContainer.style.backgroundImage = `url(${currImge})`;
+}
+
+function handleImageChange(e) {
+  const btn = e.target.closest(".main-img-btn");
+  if (!btn) return;
+  //below code for circular implementation
+  if (btn.dataset.type === "next") {
+    state.currentImg = (state.currentImg + 1) % 4;
+  } else {
+    state.currentImg = state.currentImg - 1 === 0 ? 3 : state.currentImg - 1;
+  }
+  updatePhoto();
+}
 
 //event listeners
 cartDescContainer.addEventListener("click", handleDelete);
@@ -140,3 +165,4 @@ cartBtn.addEventListener("click", handleCart);
 window.addEventListener("keydown", handleEscape);
 addToCartBtn.addEventListener("click", handleAddToCart);
 quantityBtnContainer.addEventListener("click", handleQuantity);
+mainImgContainer.addEventListener("click", handleImageChange);

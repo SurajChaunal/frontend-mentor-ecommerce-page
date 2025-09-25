@@ -51,7 +51,7 @@
           </ul>
         </nav>
         <div class="header__container-user">
-          <div class="cart-container active">
+          <div class="cart-container">
             <h3 class="cart-heading">Cart</h3>
             <div class="cart-desc">Your cart is empty</div>
           </div>
@@ -71,28 +71,43 @@
       </header>
       <main class="main-section">
         <div class="main__container-imgs">
-          <div class="main-img-container"></div>
+          <div class="main-img-container">
+            <button class="main-img-btn btn-prev" data-type="prev">
+              <img src="./images/icon-previous.svg" alt="prev logo" />
+            </button>
+            <button class="main-img-btn btn-next" data-type="next">
+              <img src="./images/icon-next.svg" alt="prev logo" />
+            </button>
+          </div>
           <div class="thumbnail-container">
-            <img
-              class="thumbnail-img"
-              alt="sneaker thumbnail-1"
-              src="./images/image-product-1-thumbnail.jpg"
-            />
-            <img
-              class="thumbnail-img active"
-              alt="sneaker thumbnail-2"
-              src="./images/image-product-2-thumbnail.jpg"
-            />
-            <img
-              class="thumbnail-img"
-              alt="sneaker thumbnail-3"
-              src="./images/image-product-3-thumbnail.jpg"
-            />
-            <img
-              class="thumbnail-img"
-              alt="sneaker thumbnail-4"
-              src="./images/image-product-4-thumbnail.jpg"
-            />
+            <button class="thumbnail-btn active">
+              <img
+                class="thumbnail-img"
+                alt="sneaker thumbnail-1"
+                src="./images/image-product-1-thumbnail.jpg"
+              />
+            </button>
+            <button class="thumbnail-btn">
+              <img
+                class="thumbnail-img"
+                alt="sneaker thumbnail-2"
+                src="./images/image-product-2-thumbnail.jpg"
+              />
+            </button>
+            <button class="thumbnail-btn">
+              <img
+                class="thumbnail-img"
+                alt="sneaker thumbnail-3"
+                src="./images/image-product-3-thumbnail.jpg"
+              />
+            </button>
+            <button class="thumbnail-btn">
+              <img
+                class="thumbnail-img"
+                alt="sneaker thumbnail-4"
+                src="./images/image-product-4-thumbnail.jpg"
+              />
+            </button>
           </div>
         </div>
         <div class="main__container-desc">
