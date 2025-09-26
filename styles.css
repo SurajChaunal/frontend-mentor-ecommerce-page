@@ -89,12 +89,15 @@ body {
   text-decoration: none;
   color: var(--color-Dark-grayish-blue);
   font-size: var(--font-size-md);
-  transition: color 0.3s;
+  transition: color 0.3s, box-shadow 0.3s;
+  border-bottom: 2px solid transparent;
 }
 .main__nav-link:hover,
 .main__nav-link:active {
   color: var(--color-Very-dark-blue);
-  border-bottom: 2px solid var(--color-Orange);
+  /* border-bottom: 2px solid var(--color-Orange); */
+  box-shadow: 0px 4.1rem 0 -12px var(--color-Orange);
+  /* box-shadow: 0 4rem 0 -8px var(--color-Orange); */
 }
 .header__container-user {
   position: relative;
@@ -369,6 +372,8 @@ body {
   backdrop-filter: blur(4px);
   overflow: hidden;
   transform: scale(0);
+  transform-origin: top;
+  transition: transform 0.4s ease-in;
   /* transform-origin: center; */
   visibility: hidden;
   z-index: 100; /* on top of everything */

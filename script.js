@@ -10,15 +10,24 @@ const productQuantity = document.querySelector(".quantity");
 const quantityBtnContainer = document.querySelector(".quantity-btns");
 const quantity = document.querySelector(".quantity");
 const mainImgContainer = document.querySelector(".main-img-container");
+const overlayMainImgContainer = document.querySelector(
+  ".overlay .main-img-container"
+);
 const thumbnailContainer = document.querySelector(".thumbnail-container");
+const overlayThumbnailContainer = document.querySelector(
+  ".overlay .thumbnail-container"
+);
 const imagesContainer = document.querySelector(".main__container-imgs");
 const cartQuantity = document.querySelector(".cart-quantity");
 const thumbnailBtns = document.querySelectorAll(
   ".thumbnail-container > .thumbnail-btn"
 );
+const overlayThumbnailsBtn =
+  overlayThumbnailContainer.querySelectorAll(".thumbnail-btn");
 const overlayContainer = document.querySelector(".overlay");
 const closeBtn = document.querySelector(".close-btn ");
 // state and data variables
+
 const product = {
   id: 1,
   name: "Fall Limited Edition Sneakers",
@@ -36,6 +45,7 @@ const state = {
   cart: [],
   imgArray,
   currentImg: 1,
+  currOverlayImg: 1,
 };
 
 // helper function
@@ -157,20 +167,30 @@ function handleQuantity(e) {
     ? updateQuantiy(currQuantity + 1)
     : currQuantity > 0 && updateQuantiy(currQuantity - 1);
 }
-function resetThumbnailBtns() {
-  thumbnailBtns.forEach((btn) => btn.classList.remove("active"));
+
+function resetThumbnailBtns(type = "regular") {
+  if (type === "regulare")
+    thumbnailBtns.forEach((btn) => btn.classList.remove("active"));
+  else overlayThumbnailsBtn.forEach((btn) => btn.classList.remove("active"));
 }
 
-function updatePhoto() {
-  const currImg = state.imgArray[state.currentImg];
-  mainImgContainer.classList.add("fading");
+function updatePhoto(type = `regular`) {
+  const currImg =
+    state.imgArray[
+      type === "regular" ? state.currentImg : state.currOverlayImg
+    ];
 
+  const container =
+    type === "regular" ? mainImgContainer : overlayMainImgContainer;
+  container.classList.add("fading");
   // wait for fade-out to finish, then swap bg and fade-in
   setTimeout(() => {
-    mainImgContainer.style.backgroundImage = `url(${currImg})`;
-    mainImgContainer.classList.remove("fading");
-    resetThumbnailBtns();
-    thumbnailBtns[state.currentImg].classList.add("active");
+    container.style.backgroundImage = `url(${currImg})`;
+    container.classList.remove("fading");
+    resetThumbnailBtns(type);
+    if (type === "regular")
+      thumbnailBtns[state.currentImg].classList.add("active");
+    else overlayThumbnailsBtn[state.currOverlayImg].classList.add("active");
   }, 100);
 }
 
@@ -195,11 +215,27 @@ function handleThumbnailClick(e) {
 }
 function hanndleOverlayOpen() {
   if (window.matchMedia("(max-width: 800px)").matches) return;
-
   overlayContainer.classList.add("active");
 }
+
 function handleOverlayClose() {
   overlayContainer.classList.remove("active");
+}
+function handleOverlayClick(e) {
+  const btn = e.target.closest(".main-img-btn");
+  if (!btn) return;
+  const len = state.imgArray.length;
+  if (btn.dataset.type === "next")
+    state.currOverlayImg = (state.currOverlayImg + 1) % len;
+  else state.currOverlayImg = (state.currOverlayImg - 1 + len) % len;
+  updatePhoto("overlay");
+}
+function handleOverlayThumbnailClick(e) {
+  const btn = e.target.closest(".thumbnail-btn");
+  if (!btn) return;
+  const imgPosition = +btn.dataset.pos;
+  state.currOverlayImg = imgPosition;
+  updatePhoto("overlay");
 }
 //event listeners
 cartDescContainer.addEventListener("click", handleDelete);
@@ -211,3 +247,8 @@ quantityBtnContainer.addEventListener("click", handleQuantity);
 mainImgContainer.addEventListener("click", handleMainImageClick);
 thumbnailContainer.addEventListener("click", handleThumbnailClick);
 closeBtn.addEventListener("click", handleOverlayClose);
+overlayMainImgContainer.addEventListener("click", handleOverlayClick);
+overlayThumbnailContainer.addEventListener(
+  "click",
+  handleOverlayThumbnailClick
+);
