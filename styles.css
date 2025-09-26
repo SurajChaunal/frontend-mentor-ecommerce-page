@@ -466,6 +466,7 @@ body {
   .main-img-container {
     position: relative;
     aspect-ratio: 3/2;
+    cursor: auto;
   }
   .main-img-btn {
     display: block;

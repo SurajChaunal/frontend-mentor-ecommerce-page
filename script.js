@@ -194,8 +194,9 @@ function handleThumbnailClick(e) {
   updatePhoto();
 }
 function hanndleOverlayOpen() {
+  if (window.matchMedia("(max-width: 800px)").matches) return;
+
   overlayContainer.classList.add("active");
-  console.log(`opening overlay`);
 }
 function handleOverlayClose() {
   overlayContainer.classList.remove("active");
