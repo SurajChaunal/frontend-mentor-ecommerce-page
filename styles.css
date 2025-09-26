@@ -96,7 +96,7 @@ body {
 .main__nav-link:active {
   color: var(--color-Very-dark-blue);
   /* border-bottom: 2px solid var(--color-Orange); */
-  box-shadow: 0px 4.1rem 0 -12px var(--color-Orange);
+  box-shadow: 0px 4.1rem 0 -8px var(--color-Orange);
   /* box-shadow: 0 4rem 0 -8px var(--color-Orange); */
 }
 .header__container-user {
@@ -460,6 +460,11 @@ body {
     font-size: var(--font-size-md);
     font-weight: var(--font-wgt-Semi-Bold);
     color: var(--color-Very-dark-blue);
+  }
+  .main__nav-link:hover,
+  .main__nav-link:active {
+    box-shadow: none;
+    color: var(--color-Orange);
   }
   .main-section {
     gap: 3.2rem;
