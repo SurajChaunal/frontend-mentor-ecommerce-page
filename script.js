@@ -169,7 +169,7 @@ function handleQuantity(e) {
 }
 
 function resetThumbnailBtns(type = "regular") {
-  if (type === "regulare")
+  if (type === "regular")
     thumbnailBtns.forEach((btn) => btn.classList.remove("active"));
   else overlayThumbnailsBtn.forEach((btn) => btn.classList.remove("active"));
 }
