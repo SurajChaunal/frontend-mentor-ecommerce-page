@@ -11,11 +11,13 @@ const quantityBtnContainer = document.querySelector(".quantity-btns");
 const quantity = document.querySelector(".quantity");
 const mainImgContainer = document.querySelector(".main-img-container");
 const thumbnailContainer = document.querySelector(".thumbnail-container");
+const imagesContainer = document.querySelector(".main__container-imgs");
 const cartQuantity = document.querySelector(".cart-quantity");
 const thumbnailBtns = document.querySelectorAll(
   ".thumbnail-container > .thumbnail-btn"
 );
-
+const overlayContainer = document.querySelector(".overlay");
+const closeBtn = document.querySelector(".close-btn ");
 // state and data variables
 const product = {
   id: 1,
@@ -59,8 +61,8 @@ function handleCart(e) {
 function handleEscape(e) {
   if (e.key != "Escape") return;
 
-  if (cartContainer.classList.contains("active"))
-    cartContainer.classList.remove("active");
+  cartContainer.classList.remove("active");
+  overlayContainer.classList.remove("active");
   cartBtn.focus();
 }
 function renderRow(product) {
@@ -174,15 +176,14 @@ function updatePhoto() {
 
 function handleMainImageClick(e) {
   const btn = e.target.closest(".main-img-btn");
-  if (!btn) return;
-  //below code for circular implementation
-  const len = state.imgArray.length;
-  if (btn.dataset.type === "next") {
-    state.currentImg = (state.currentImg + 1) % len;
-  } else {
-    state.currentImg = (state.currentImg - 1 + len) % len;
-  }
-  updatePhoto();
+  if (btn) {
+    //below code for circular implementation
+    const len = state.imgArray.length;
+    if (btn.dataset.type === "next")
+      state.currentImg = (state.currentImg + 1) % len;
+    else state.currentImg = (state.currentImg - 1 + len) % len;
+    updatePhoto();
+  } else hanndleOverlayOpen();
 }
 
 function handleThumbnailClick(e) {
@@ -191,6 +192,13 @@ function handleThumbnailClick(e) {
   const imgPosition = +btn.dataset.pos;
   state.currentImg = imgPosition;
   updatePhoto();
+}
+function hanndleOverlayOpen() {
+  overlayContainer.classList.add("active");
+  console.log(`opening overlay`);
+}
+function handleOverlayClose() {
+  overlayContainer.classList.remove("active");
 }
 //event listeners
 cartDescContainer.addEventListener("click", handleDelete);
@@ -201,3 +209,4 @@ addToCartBtn.addEventListener("click", handleAddToCart);
 quantityBtnContainer.addEventListener("click", handleQuantity);
 mainImgContainer.addEventListener("click", handleMainImageClick);
 thumbnailContainer.addEventListener("click", handleThumbnailClick);
+closeBtn.addEventListener("click", handleOverlayClose);

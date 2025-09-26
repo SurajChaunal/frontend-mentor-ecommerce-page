@@ -216,6 +216,7 @@ body {
   margin-bottom: 2rem;
   transition: opacity 0.4s ease;
   opacity: 1;
+  cursor: pointer;
 }
 .main-img-container.fading {
   opacity: 0.5;
@@ -228,6 +229,13 @@ body {
   transform: translateY(-50%);
   background-color: var(--color-White);
   top: 50%;
+  cursor: pointer;
+  display: none;
+  transition: color 0.2s;
+}
+.main-img-btn:hover,
+.main-img-btn:active {
+  color: var(--color-Orange);
 }
 .btn-prev {
   left: -4%;
@@ -235,6 +243,11 @@ body {
 .btn-next {
   right: -4%;
 }
+.icon-arrow {
+  height: 2rem;
+  stroke-width: 3px;
+}
+
 .thumbnail-container {
   display: flex;
   justify-content: space-between;
@@ -246,13 +259,16 @@ body {
 }
 .thumbnail-btn {
   overflow: hidden;
-  transition: filter 0.3s ease-in;
+  transition: filter 0.2s ease-in;
   border-radius: 1.2rem;
+  cursor: pointer;
 }
 
-.thumbnail-btn.active {
+.thumbnail-btn.active,
+.thumbnail-btn:hover {
   filter: brightness(1.12) opacity(0.75);
-  border: 0.3rem solid var(--color-Orange);
+  /* border: 0.3rem solid var(--color-Orange); */
+  box-shadow: 0 0 0 3px var(--color-Orange);
 }
 /********* Description Section ********/
 
@@ -345,6 +361,57 @@ body {
   border-radius: 0.8rem;
 }
 
+/* overlay styles */
+.overlay {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.75); /* dim background */
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  transform: scale(0);
+  /* transform-origin: center; */
+  visibility: hidden;
+  z-index: 100; /* on top of everything */
+}
+.overlay.active {
+  transform: scale(1);
+  overflow: auto;
+  visibility: visible;
+  /* display: flex; */
+}
+.overlay-main {
+  margin: 5rem auto;
+  max-width: 45vw;
+  max-height: 40vh;
+}
+.overlay-body .main__container-imgs {
+  margin: 0;
+}
+.overlay-body .thumbnail-container {
+  margin: 0 3rem;
+  gap: 4rem;
+  justify-content: space-around;
+}
+.overlay-body .main-img-btn {
+  display: block;
+}
+.close-btn {
+  display: block;
+  margin-left: auto;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: var(--color-White);
+  transition: color 0.2s;
+}
+.close-btn:hover,
+.close-btn:active {
+  color: var(--color-Orange);
+}
+.icon-close {
+  height: 3rem;
+  stroke-width: 2px;
+}
+
 @media (max-width: 800px) {
   .container {
     width: min(90%, 60rem);
@@ -401,6 +468,7 @@ body {
     aspect-ratio: 3/2;
   }
   .main-img-btn {
+    display: block;
     padding: 1rem;
     border-radius: 50%;
   }
