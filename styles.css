@@ -386,8 +386,7 @@ body {
 }
 .overlay-main {
   margin: 5rem auto;
-  max-width: 45vw;
-  max-height: 40vh;
+  max-width: 35vw;
 }
 .overlay-body .main__container-imgs {
   margin: 0;
