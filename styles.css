@@ -38,7 +38,7 @@ body {
 .container {
   width: min(90%, 120rem);
   margin-top: 2rem;
-  /* overflow-x: hidden; */
+  overflow: hidden;
 }
 .btn {
   border: none;
@@ -46,10 +46,7 @@ body {
   cursor: pointer;
   padding: 0.6rem;
 }
-.thumbnail-btn {
-  border: none;
-  background: none;
-}
+
 /********* Header Section ********/
 
 .header {
@@ -110,7 +107,7 @@ body {
 .cart-container {
   padding: 1rem;
   min-height: 20rem;
-  width: 40rem;
+  width: min(40rem, 90vw);
   background-color: var(--color-White);
   box-shadow: 0 0 12px 4px hsla(217, 9%, 45%, 0.209);
   border-radius: 1rem;
@@ -261,6 +258,8 @@ body {
   height: 100%;
 }
 .thumbnail-btn {
+  border: none;
+  background: none;
   overflow: hidden;
   transition: filter 0.2s ease-in;
   border-radius: 1.2rem;
@@ -416,7 +415,7 @@ body {
   stroke-width: 2px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .container {
     width: min(90%, 60rem);
   }
