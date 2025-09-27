@@ -6,7 +6,6 @@ const cartBtn = document.querySelector(".btn-cart");
 const addToCartBtn = document.querySelector(".btn-add-cart");
 const cartContainer = document.querySelector(".cart-container");
 const cartDescContainer = document.querySelector(".cart-desc");
-const productQuantity = document.querySelector(".quantity");
 const quantityBtnContainer = document.querySelector(".quantity-btns");
 const quantity = document.querySelector(".quantity");
 const mainImgContainer = document.querySelector(".main-img-container");
@@ -69,27 +68,27 @@ function handleCart(e) {
   cartContainer.classList.toggle("active");
 }
 function handleEscape(e) {
-  if (e.key != "Escape") return;
+  if (e.key !== "Escape") return;
 
   cartContainer.classList.remove("active");
   overlayContainer.classList.remove("active");
   cartBtn.focus();
 }
-function renderRow(product) {
+function renderRow(productRow) {
   return `
-    <div class="cart__product-row" data-id="${product.id}">
+    <div class="cart__product-row" data-id="${productRow.id}">
       <div class="cart__product-img">
-        <img class="cart-thumbnail" src="${product.img}" alt="${
-    product.title
+        <img class="cart-thumbnail" src="${productRow.img}" alt="${
+    productRow.title
   } thumbnail" />
       </div>
       <div class="cart__product-desc">
-        <h3 class="cart__product-heading">${product.name}</h3>
+        <h3 class="cart__product-heading">${productRow.name}</h3>
         <p class="cart__price-info">
-          <span>$${product.price.toFixed(2)} x ${product.quantity}</span>
-          <span class="total">$${(product.price * product.quantity).toFixed(
-            2
-          )}</span>
+          <span>$${productRow.price.toFixed(2)} x ${productRow.quantity}</span>
+          <span class="total">$${(
+            productRow.price * productRow.quantity
+          ).toFixed(2)}</span>
         </p>
       </div>
       <button class="btn btn-delete">
@@ -109,8 +108,7 @@ function updateCartQuantity(quantity) {
   cartQuantity.textContent = quantity;
 }
 
-function updateCart(id) {
-  const productInfo = state.cart.find((prod) => prod.id === id);
+function updateCart(quantity) {
   // const markupRow = renderRow(productInfo);
   const markupBtn = renderCheckoutButton();
 
@@ -121,7 +119,7 @@ function updateCart(id) {
       ? `${rowMarkup} ${markupBtn}`
       : `Your cart is empty`;
 
-  updateCartQuantity(productInfo?.quantity ?? 0);
+  updateCartQuantity(quantity);
   cartDescContainer.innerHTML = ``;
   cartDescContainer.insertAdjacentHTML("beforeend", finalMarkup);
 }
@@ -144,7 +142,7 @@ function handleAddToCart() {
     // Update existing
     state.cart[existingIndex].quantity = quantity;
   }
-  updateCart(product.id);
+  updateCart(quantity);
 }
 function handleDelete(e) {
   const delBtn = e.target.closest(".btn-delete");
@@ -156,7 +154,7 @@ function handleDelete(e) {
 
   // remove from state (or decrease quantity)
   state.cart = state.cart.filter((p) => String(p.id) !== String(id));
-  updateCart(); // re-render
+  updateCart(0); // re-render
 }
 function handleQuantity(e) {
   const btn = e.target.closest(".btn-quantity");
@@ -203,7 +201,7 @@ function handleMainImageClick(e) {
       state.currentImg = (state.currentImg + 1) % len;
     else state.currentImg = (state.currentImg - 1 + len) % len;
     updatePhoto();
-  } else hanndleOverlayOpen();
+  } else handleOverlayOpen();
 }
 
 function handleThumbnailClick(e) {
@@ -213,7 +211,7 @@ function handleThumbnailClick(e) {
   state.currentImg = imgPosition;
   updatePhoto();
 }
-function hanndleOverlayOpen() {
+function handleOverlayOpen() {
   if (window.matchMedia("(max-width: 800px)").matches) return;
   overlayContainer.classList.add("active");
 }
