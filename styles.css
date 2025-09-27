@@ -115,7 +115,7 @@ body {
   visibility: hidden;
   position: absolute;
   top: 120%;
-  right: 0%;
+  right: 5%;
   transition: transform 0.3s ease-in;
   transform: scaleY(0);
   transform-origin: top;

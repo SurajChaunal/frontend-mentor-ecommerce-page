@@ -16,7 +16,6 @@ const thumbnailContainer = document.querySelector(".thumbnail-container");
 const overlayThumbnailContainer = document.querySelector(
   ".overlay .thumbnail-container"
 );
-const imagesContainer = document.querySelector(".main__container-imgs");
 const cartQuantity = document.querySelector(".cart-quantity");
 const thumbnailBtns = document.querySelectorAll(
   ".thumbnail-container > .thumbnail-btn"
@@ -24,7 +23,7 @@ const thumbnailBtns = document.querySelectorAll(
 const overlayThumbnailsBtn =
   overlayThumbnailContainer.querySelectorAll(".thumbnail-btn");
 const overlayContainer = document.querySelector(".overlay");
-const closeBtn = document.querySelector(".close-btn ");
+const closeBtn = document.querySelector(".close-btn");
 // state and data variables
 
 const product = {
@@ -48,7 +47,7 @@ const state = {
 };
 
 // helper function
-function updateQuantiy(val) {
+function updateQuantity(val) {
   quantity.textContent = +val;
 }
 function getQuantity(val) {
@@ -162,8 +161,8 @@ function handleQuantity(e) {
   if (!btn) return;
 
   btn.dataset.type === "inc"
-    ? updateQuantiy(currQuantity + 1)
-    : currQuantity > 0 && updateQuantiy(currQuantity - 1);
+    ? updateQuantity(currQuantity + 1)
+    : currQuantity > 0 && updateQuantity(currQuantity - 1);
 }
 
 function resetThumbnailBtns(type = "regular") {
